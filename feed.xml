@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Zhiguo</title>
+    <description></description>
+    <link>https://ZhiguoLong.github.io/home/</link>
+    <atom:link href="https://ZhiguoLong.github.io/home/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Tue, 29 Nov 2016 23:57:55 +1100</pubDate>
+    <lastBuildDate>Tue, 29 Nov 2016 23:57:55 +1100</lastBuildDate>
+    <generator>Jekyll v3.1.6</generator>
+    
+  </channel>
+</rss>
