@@ -3,10 +3,10 @@
   <channel>
     <title>Zhiguo</title>
     <description></description>
-    <link>https://ZhiguoLong.github.io/home/</link>
-    <atom:link href="https://ZhiguoLong.github.io/home/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 29 Nov 2016 23:57:55 +1100</pubDate>
-    <lastBuildDate>Tue, 29 Nov 2016 23:57:55 +1100</lastBuildDate>
+    <link>https://ZhiguoLong.github.io//</link>
+    <atom:link href="https://ZhiguoLong.github.io//feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Wed, 30 Nov 2016 00:25:57 +1100</pubDate>
+    <lastBuildDate>Wed, 30 Nov 2016 00:25:57 +1100</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
   </channel>
