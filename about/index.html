@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="https://ZhiguoLong.github.io/css/academicons.css" type="text/css"/>
     <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
     <!-- Hux change font-awesome CDN to qiniu -->
-    <link href="http://cdn.staticfile.org/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://ZhiguoLong.github.io/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     
 
 
@@ -162,8 +162,8 @@
             ">
     			<!-- Language Selector -->
 <select onchange= "onLanChange(this.options[this.options.selectedIndex].value)">
-    <option value="0" selected> 中文 Chinese </option>
-    <option value="1"> 英语 English </option>
+    <option value="0"> 中文 Chinese </option>
+    <option value="1" selected> 英语 English </option>
 </select>
 
 <!-- Chinese Version -->
@@ -174,18 +174,27 @@
     <p>
     人生只有一次，或平淡或激荡，热爱它。
     </p>
-    <!-- TODO Add self introduction-->
+    <!-- TODO Add Chinese self introduction-->
 </div>
 
 <!-- English Version -->
 <div class="en post-container">
     <blockquote>
       A long path to search in the tree of life.
-    </blockquote>
-Let us suppose the possibilities in life are the nodes of a tree and the edges
+      
+      Let us suppose the possibilities in life are the nodes of a tree and the edges
 between nodes give the transitions between the possibilities (by taking
 actions). Every life might be seen as a path in the tree. There is no backtracking.
 So think before taking actions.
+    </blockquote>
+
+    <p>I am currently a PhD candidate at the newly established research centre <a href="http://www.uts.edu.au/research-and-teaching/our-research/centre-quantum-software-and-information">UTS:QSI</a> of the University of Technology Sydney (<a href="http://www.uts.edu.au/">UTS</a>). I started the PhD candidature in July 2012, under the supervision of <a href="http://www.uts.edu.au/staff/sanjiang.li">Prof. Sanjiang Li</a>. In the second-half of the year 2015, I visited <a href="https://users.cs.cf.ac.uk/S.Schockaert/Home.html">Dr. Steven Schockaert</a> at <a href="http://www.cardiff.ac.uk/computer-science">School of Computer Science and Informatics</a> of <a href="http://www.cardiff.ac.uk/">Cardiff University, the UK</a>. Before I came to Australia, I studied mathematics at <a href="http://math.scu.edu.cn/indexen.asp">College of Mathematics</a> of <a href="http://www.scu.edu.cn/en/">Sichuan University, China</a> and obtained the degree of Bachelor of Mathematics. A detailed CV can be found <a href="https://ZhiguoLong.github.io/file/cv-zhiguo-long.pdf">here</a>.</p>
+
+<p>I am interested in the research on Qualitative Spatial Representation and Reasoning (<a href="http://users.rsise.anu.edu.au/~jrenz/papers/renz-nebel-los.pdf">QSR</a>), Geographical Information Science, Artificial Intelligence, and applications involving qualitative spatial or temporal information.</p>
+
+<p>I am also interested in coding and open source projects, especially the ones that help people to be more productive. I mainly code in Java, Python, Matlab, Bash, Javascript, and HTML. For research writing, I use <a href="http://www.vim.org/">Vim</a> with <a href="http://vim-latex.sourceforge.net/">Latex-suite</a> (previously known as Vim-Latex), and I am trying to use <a href="https://www.r-project.org/">R</a> for plotting and analysing experimental results. <a href="https://www.zotero.org/">Zotero</a> is a good software to manage references, notes, and even bookmarks. I recommend using <a href="https://git-scm.com/">git</a> to manage versions of codes, research paper drafts, and many more.</p>
+
+<p>Soccer, swimming, reading, and cooking are my favourite hobbies.</p>
 
 
 </div>
@@ -203,7 +212,7 @@ So think before taking actions.
             $zh.style.display = "none";
         }
     }
-    onLanChange(0);
+    onLanChange(1);
 </script>
 
 
@@ -429,7 +438,7 @@ So think before taking actions.
 
 <!--fastClick.js -->
 <script>
-    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+async("https://ZhiguoLong.github.io/js/fastclick.min.js", function(){
         var $nav = document.querySelector("nav");
         if($nav) FastClick.attach($nav);
     })
