@@ -10,9 +10,9 @@
     <meta name="keyword"  content="">
     <link rel="shortcut icon" href="https://ZhiguoLong.github.io/img/favicon.ico">
 
-    <title>Blog - Zhiguo Long | 龙治国</title>
+    <title>R ggplot2 confusions - Zhiguo Long | 龙治国</title>
 
-    <link rel="canonical" href="https://ZhiguoLong.github.io/blog/">
+    <link rel="canonical" href="https://ZhiguoLong.github.io/2018/08/28/r-ggplot2-mu/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="https://ZhiguoLong.github.io/css/bootstrap.min.css">
@@ -136,147 +136,213 @@
 </script>
 
 
-    <!-- Page Header -->
-<header class="intro-header" style="background-image: url('https://ZhiguoLong.github.io/img/blog-bg.jpg')">
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/img/home-bg.jpg" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+	background-image: url('https://ZhiguoLong.github.io/img/blog-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
     <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>Blog</h1>
-                    <!--<hr class="small">-->
-                    <span class="subheading">thoughts.</span>
-                </div>
-            </div>
-        </div>
+	<div class="row">
+	    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+		<div class="post-heading">
+		    <div class="tags">
+			
+			<a class="tag" href="https://ZhiguoLong.github.io/tags/#R" title="R">R</a>
+			
+			<a class="tag" href="https://ZhiguoLong.github.io/tags/#ggplot2" title="ggplot2">ggplot2</a>
+			
+			<a class="tag" href="https://ZhiguoLong.github.io/tags/#save to pdf" title="save to pdf">save to pdf</a>
+			
+		    </div>
+		    <h1>R ggplot2 confusions</h1>
+		    
+		    
+		    <h2 class="subheading">Greek letter mu is not correctly displayed</h2>
+		    
+		    <span class="meta">Posted by Zhiguo on August 28, 2018</span>
+		    <span id="wordcount"></span>
+		</div>
+	    </div>
+	</div>
     </div>
 </header>
 
-<!-- Main Content -->
-<div class="container">
+<!-- Post Content -->
+<article>
+    <div class="container">
 	<div class="row">
-        
 
-<!-- USE SIDEBAR -->
     <!-- Post Container -->
-    		<div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
-    			
-<div class="post-preview">
-    <a href="https://ZhiguoLong.github.io/2018/08/28/r-ggplot2-mu/">
-        <h2 class="post-title">
-            R ggplot2 confusions
-        </h2>
-        
-        <h3 class="post-subtitle">
-            Greek letter mu is not correctly displayed
-        </h3>
-        
-        <div class="post-content-preview">
-            R is powerful and ggplot2 makes it more accessible.
+	    <div class="
+		col-lg-8 col-lg-offset-1
+		col-md-8 col-md-offset-1
+		col-sm-12
+		col-xs-12
+		post-container
+	    ">
+				<p><code class="highlighter-rouge">R</code> is powerful and <code class="highlighter-rouge">ggplot2</code> makes it more accessible.
 Recently, I need to create a plot that has the Greek letter \(\mu\) displayed as a label.
-First I tried the following script in terminal
-r &lt;- ...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Zhiguo on August 28, 2018
-    </p>
-</div>
-<hr>
+First I tried the following script in terminal</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>r &lt;- rnorm(mean = 5, sd = 1, n = 1000)
+df &lt;- data.frame(r)
+h &lt;- ggplot(df,aes(r))
+h &lt;- h + geom_histogram()
+lstr1 &lt;- expression(mu == 5)
+h &lt;- h + annotate(geom="text",label=as.character(lstr1),x=8,y=100,family="Times",size=6,parse=TRUE)
+</code></pre></div></div>
+<p>And \(\mu\) is displayed correctly in the default device as shown below.
+<img src="/img/in-post/R-ggplot2-mu-png.png" alt="ggplot2 correct mu" /></p>
+
+<p>However, when I tried to save the figure by using <code class="highlighter-rouge">pdf("histogram.pdf")</code> or <code class="highlighter-rouge">ggsave("histogram.pdf")</code>
+the letter \(\mu\) was displayed as \(\propto\) in the pdf file, as shown below.
+<img src="/img/in-post/R-ggplot2-mu-pdf.png" alt="ggplot2 wrong mu" /></p>
+
+<p>This can be fixed by saving the figure to pdf with <code class="highlighter-rouge">cairo_pdf("histogram.pdf")</code>.</p>
+
+<p>I suspect it was because of encoding or font issue in the saving process.</p>
+
+<p>By the way, if one wants \(\mu\) to be displayed as italic, then changing
+<code class="highlighter-rouge">lstr1 &lt;- expression(mu == 5)</code> to <code class="highlighter-rouge">lstr1 &lt;- expression(italic("\u03BC") == 5)</code>
+will do.
+Here <code class="highlighter-rouge">\u03BC</code> is the unicode of \(\mu\). (cf. <a href="https://stackoverflow.com/questions/27690729/greek-letters-symbols-and-line-breaks-inside-a-ggplot-legend-label/27741196">Greek letters, symbols, and line breaks inside a ggplot legend label</a>)</p>
 
 
-<!-- Pager -->
+		</div>
+		  <!-- Sidebar Container -->
+	    <div class="
+		col-lg-3 col-lg-offset-0
+		col-md-3 col-md-offset-0
+		col-sm-12
+		col-xs-12
+		sidebar-container
+	    ">
+		<!-- Featured Tags -->
+		
+		<section>
+		    <hr class="hidden-sm hidden-xs">
+		    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+		    <div class="tags">
+			  
+			      
+			  
+			      
+			  
+			      
+			  
+		    </div>
+		</section>
+		
+
+		<!-- Friends Blog -->
+		
+		<hr>
+		<h5>Related Links</h5>
+		<ul class="list-inline">
+		    
+			<li><a href="http://www.jaeheelee.info/">Jae Hee Lee</a></li>
+		    
+			<li><a href="https://sites.google.com/site/lisanjiang/">Sanjiang Li</a></li>
+		    
+			<li><a href="http://cgi.di.uoa.gr/~sioutis/index.php">Michael Sioutis</a></li>
+		    
+		</ul>
+		
+	    </div>
+<!--                 <hr> -->
+		
+		
 
 
-    		</div>
-    <!-- Sidebar Container -->
-            <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
-                <!-- Featured Tags -->
-                
-                <section>
-                    <hr class="hidden-sm hidden-xs">
-                    <h5><a href="https://ZhiguoLong.github.io/tags/">FEATURED TAGS</a></h5>
-                    <div class="tags">
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                    </div>
-                </section>
-                
+		<ul class="pager">
+		    
+		    
+		</ul>
 
-                <!-- Short About -->
-                <section class="visible-md visible-lg">
-                    <hr><h5><a href="https://ZhiguoLong.github.io/about/">ABOUT ME</a></h5>
-                    <div class="short-about">
-                        
-                            <img src="https://ZhiguoLong.github.io//img/avatar-zhiguo.jpg" />
-                        
-                        
-                            <p>吾将上下而求索</p>
-                        
-                        <!-- SNS Link -->
-                        <ul class="list-inline">
-                            
-                            
-                            
-                            
-                            <li>
-                            <a target="_blank" href="https://www.researchgate.net/profile/Zhiguo_Long">
-                            <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa  fa-stack-1x fa-inverse"><i class="ai ai-researchgate ai-1x" style="color:white;"></i></i>
-                            </span>
-                            </a>
-                            </li>
-                            
-                            
-                            
-                            
-                            <li>
-                                <a target="_blank" href="https://github.com/ZhiguoLong">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            
-                        </ul>
-                    </div>
-                </section>
-                <!-- Friends Blog -->
-                
-                <hr>
-                <h5>Related Links</h5>
-                <ul class="list-inline">
-                    
-                        <li><a href="http://www.jaeheelee.info/">Jae Hee Lee</a></li>
-                    
-                        <li><a href="https://sites.google.com/site/lisanjiang/">Sanjiang Li</a></li>
-                    
-                        <li><a href="http://cgi.di.uoa.gr/~sioutis/index.php">Michael Sioutis</a></li>
-                    
-                </ul>
-                
-    		</div>
-        
+
+		
+
+		
+
+	    </div>
+
+    
 	</div>
-</div>
+    </div>
+</article>
+
+
+
+
+
+<!-- word count -->
+<script type="text/javascript">
+function get_text(el) {
+    ret = "";
+    var length = el.childNodes.length;
+    for(var i = 0; i < length; i++) {
+	var node = el.childNodes[i];
+	if(node.nodeType != 8) {
+	    ret += node.nodeType != 1 ? node.nodeValue : get_text(node);
+	}
+    }
+    return ret;
+}
+var words = get_text(document.getElementById('post-container-div'));
+var matches = words.match(/[\u00ff-\uffff]|\S+/g);
+var count = (matches ? matches.length : 0);
+var div = document.getElementById('wordcount');
+var time = count/2;
+var minutes = Math.floor(time / 60);
+var seconds = Math.floor(time - minutes * 60);
+div.innerHTML = "<br> Word: " + count+"<br>"+"Reading time about: "+((minutes>0) ? (minutes+" min ") : "") +((seconds>0) ? (seconds+ " sec ") : "");
+
+</script>
+<!-- word count end -->
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+	  o = d.createElement(t),
+	  s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+	anchors.options = {
+	  visible: 'always',
+	  placement: 'right',
+	  icon: '#'
+	};
+	anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+	.anchorjs-link{
+	    position: absolute;
+	    left: -0.75em;
+	    font-size: 1.1em;
+	    margin-top : -0.1em;
+	}
+    }
+</style>
+
 
 
     <!-- Footer -->

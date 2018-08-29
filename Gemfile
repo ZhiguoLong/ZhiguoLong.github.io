@@ -1,16 +1,17 @@
 source 'https://rubygems.org'
 #####
 # causes custom plugins not loading
-# gem 'github-pages', group: :jekyll_plugins
+ gem 'github-pages', group: :jekyll_plugins
 #####
 
 #####
 # optional
 gem 'therubyracer'
 #######
-gem 'jekyll', '=3.1.6'
-gem 'kramdown', '=1.11.1'
-gem 'jekyll-paginate', '=1.1.0'
+
+#gem 'jekyll', '=3.3.0'
+#gem 'kramdown', '=1.11.1'
+#gem 'jekyll-paginate', '=1.1.0'
 
 # gems used by including the gem 'github-pages'
 # Using concurrent-ruby 1.0.2
