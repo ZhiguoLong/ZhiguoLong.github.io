@@ -3,11 +3,64 @@
   <channel>
     <title>Zhiguo</title>
     <description></description>
-    <link>https://ZhiguoLong.github.io/</link>
-    <atom:link href="https://ZhiguoLong.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 29 Aug 2018 16:35:04 +0800</pubDate>
-    <lastBuildDate>Wed, 29 Aug 2018 16:35:04 +0800</lastBuildDate>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Sat, 20 Oct 2018 23:46:08 +0800</pubDate>
+    <lastBuildDate>Sat, 20 Oct 2018 23:46:08 +0800</lastBuildDate>
     <generator>Jekyll v3.7.3</generator>
+    
+      <item>
+        <title>Java Jar Building</title>
+        <description>&lt;p&gt;Extracting to &lt;code class=&quot;highlighter-rouge&quot;&gt;jar&lt;/code&gt; file makes it convenient to run a Java program from command
+line. But today I encountered a problem of extracting &lt;code class=&quot;highlighter-rouge&quot;&gt;jar&lt;/code&gt; file with IntelliJ Idea.&lt;/p&gt;
+
+&lt;p&gt;The problem is that after using the &lt;code class=&quot;highlighter-rouge&quot;&gt;Build Artifact&lt;/code&gt; function in IntelliJ Idea to
+build a &lt;code class=&quot;highlighter-rouge&quot;&gt;jar&lt;/code&gt; file, I cannot run it from command line: it says “Error: Could not
+find or load main class”.&lt;/p&gt;
+
+&lt;p&gt;I searched the Internet and finally found two solutions.&lt;/p&gt;
+
+&lt;h2 id=&quot;solution-1-manually-delete-some-files-from-the-jar-file&quot;&gt;Solution 1: Manually delete some files from the &lt;code class=&quot;highlighter-rouge&quot;&gt;jar&lt;/code&gt; file&lt;/h2&gt;
+
+&lt;p&gt;Delete from the &lt;code class=&quot;highlighter-rouge&quot;&gt;jar&lt;/code&gt; file these files: &lt;code class=&quot;highlighter-rouge&quot;&gt;META-INF/*.RSA&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;META-INF/*.SF&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;META-INF/*.DSA&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;This is easy. You can open some archive manager software and delete these files and
+save. Then the program will run like a magic.&lt;/p&gt;
+
+&lt;p&gt;This solution is from &lt;a href=&quot;https://stackoverflow.com/questions/51455197/gradle-fatjar-could-not-find-or-load-main-class/51456080&quot;&gt;Andreas Volkmann&lt;/a&gt;.
+In the solution, he mentioned that this is related to “signatures of interfering dependencies”,
+which inspired me to have a look at how to avoid these kind of signature of dependencies
+and leaded to the second solution.&lt;/p&gt;
+
+&lt;h2 id=&quot;solution-2-change-extracting-library-jars-to-pack-as-it-is&quot;&gt;Solution 2: Change extracting library jars to pack as it is&lt;/h2&gt;
+
+&lt;p&gt;In the configuration of Artifact (&lt;code class=&quot;highlighter-rouge&quot;&gt;Project Structure -&amp;gt; Artifact&lt;/code&gt;), there is a
+window for choosing source. What we need to do is to remove all the “Extracted”
+things, and double click the library files in “Available Elements” on the right.
+This is from &lt;a href=&quot;https://stackoverflow.com/questions/41746177/how-do-i-create-a-runnable-jar-in-intellij-as-i-would-in-eclipse/43855741#43855741&quot;&gt;Someone on stackoverflow&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;comments&quot;&gt;Comments&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;The problem of “could not find or load main class” here is due to that some dependencies
+are signed which mess up the META-INF folder.&lt;/li&gt;
+  &lt;li&gt;There are more advanced ways to excluding signature files.&lt;/li&gt;
+  &lt;li&gt;It is a good habit to keep library jars as it is when packaging a new jar.&lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+        <pubDate>Fri, 19 Oct 2018 23:15:00 +0800</pubDate>
+        <link>http://localhost:4000/2018/10/19/java-intellij-jar/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/10/19/java-intellij-jar/</guid>
+        
+        <category>Java</category>
+        
+        <category>Jar</category>
+        
+        <category>IntelliJ</category>
+        
+        
+      </item>
     
       <item>
         <title>R ggplot2 confusions</title>
@@ -39,8 +92,8 @@ Here &lt;code class=&quot;highlighter-rouge&quot;&gt;\u03BC&lt;/code&gt; is the 
 
 </description>
         <pubDate>Tue, 28 Aug 2018 21:00:00 +0800</pubDate>
-        <link>https://ZhiguoLong.github.io/2018/08/28/r-ggplot2-mu/</link>
-        <guid isPermaLink="true">https://ZhiguoLong.github.io/2018/08/28/r-ggplot2-mu/</guid>
+        <link>http://localhost:4000/2018/08/28/r-ggplot2-mu/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/08/28/r-ggplot2-mu/</guid>
         
         <category>R</category>
         
