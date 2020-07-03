@@ -8,6 +8,7 @@ source 'https://mirrors.tuna.tsinghua.edu.cn/rubygems/'
 #####
 # optional
 gem 'therubyracer'
+gem "rubyzip", ">= 1.3.0"
 #######
 
 #gem 'jekyll', '=3.3.0'
