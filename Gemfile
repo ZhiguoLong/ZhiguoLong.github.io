@@ -7,8 +7,9 @@ source 'https://mirrors.tuna.tsinghua.edu.cn/rubygems/'
 
 #####
 # optional
-gem 'therubyracer'
+# gem 'therubyracer'
 gem "rubyzip", ">= 1.3.0"
+gem "nokogiri", ">= 1.13.6"
 #######
 
 #gem 'jekyll', '=3.3.0'
@@ -71,3 +72,5 @@ gem "rubyzip", ">= 1.3.0"
 # Using jemoji 0.6.2
 # Using github-pages 87
 
+
+gem "webrick", "~> 1.7"

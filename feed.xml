@@ -5,24 +5,24 @@
     <description></description>
     <link>https://ZhiguoLong.github.io/</link>
     <atom:link href="https://ZhiguoLong.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 04 Jul 2020 00:23:24 +0800</pubDate>
-    <lastBuildDate>Sat, 04 Jul 2020 00:23:24 +0800</lastBuildDate>
-    <generator>Jekyll v3.8.5</generator>
+    <pubDate>Tue, 16 Aug 2022 10:03:25 +0800</pubDate>
+    <lastBuildDate>Tue, 16 Aug 2022 10:03:25 +0800</lastBuildDate>
+    <generator>Jekyll v3.9.2</generator>
     
       <item>
         <title>Java Jar Building</title>
-        <description>&lt;p&gt;Extracting to &lt;code class=&quot;highlighter-rouge&quot;&gt;jar&lt;/code&gt; file makes it convenient to run a Java program from command
-line. But today I encountered a problem of extracting &lt;code class=&quot;highlighter-rouge&quot;&gt;jar&lt;/code&gt; file with IntelliJ Idea.&lt;/p&gt;
+        <description>&lt;p&gt;Extracting to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jar&lt;/code&gt; file makes it convenient to run a Java program from command
+line. But today I encountered a problem of extracting &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jar&lt;/code&gt; file with IntelliJ Idea.&lt;/p&gt;
 
-&lt;p&gt;The problem is that after using the &lt;code class=&quot;highlighter-rouge&quot;&gt;Build Artifact&lt;/code&gt; function in IntelliJ Idea to
-build a &lt;code class=&quot;highlighter-rouge&quot;&gt;jar&lt;/code&gt; file, I cannot run it from command line: it says “Error: Could not
+&lt;p&gt;The problem is that after using the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Build Artifact&lt;/code&gt; function in IntelliJ Idea to
+build a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jar&lt;/code&gt; file, I cannot run it from command line: it says “Error: Could not
 find or load main class”.&lt;/p&gt;
 
 &lt;p&gt;I searched the Internet and finally found two solutions.&lt;/p&gt;
 
-&lt;h2 id=&quot;solution-1-manually-delete-some-files-from-the-jar-file&quot;&gt;Solution 1: Manually delete some files from the &lt;code class=&quot;highlighter-rouge&quot;&gt;jar&lt;/code&gt; file&lt;/h2&gt;
+&lt;h2 id=&quot;solution-1-manually-delete-some-files-from-the-jar-file&quot;&gt;Solution 1: Manually delete some files from the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jar&lt;/code&gt; file&lt;/h2&gt;
 
-&lt;p&gt;Delete from the &lt;code class=&quot;highlighter-rouge&quot;&gt;jar&lt;/code&gt; file these files: &lt;code class=&quot;highlighter-rouge&quot;&gt;META-INF/*.RSA&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;META-INF/*.SF&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;META-INF/*.DSA&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Delete from the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jar&lt;/code&gt; file these files: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;META-INF/*.RSA&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;META-INF/*.SF&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;META-INF/*.DSA&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;This is easy. You can open some archive manager software and delete these files and
 save. Then the program will run like a magic.&lt;/p&gt;
@@ -34,7 +34,7 @@ and leaded to the second solution.&lt;/p&gt;
 
 &lt;h2 id=&quot;solution-2-change-extracting-library-jars-to-pack-as-it-is&quot;&gt;Solution 2: Change extracting library jars to pack as it is&lt;/h2&gt;
 
-&lt;p&gt;In the configuration of Artifact (&lt;code class=&quot;highlighter-rouge&quot;&gt;Project Structure -&amp;gt; Artifact&lt;/code&gt;), there is a
+&lt;p&gt;In the configuration of Artifact (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Project Structure -&amp;gt; Artifact&lt;/code&gt;), there is a
 window for choosing source. What we need to do is to remove all the “Extracted”
 things, and double click the library files in “Available Elements” on the right.
 This is from &lt;a href=&quot;https://stackoverflow.com/questions/41746177/how-do-i-create-a-runnable-jar-in-intellij-as-i-would-in-eclipse/43855741#43855741&quot;&gt;Someone on stackoverflow&lt;/a&gt;.&lt;/p&gt;
@@ -64,10 +64,10 @@ are signed which mess up the META-INF folder.&lt;/li&gt;
     
       <item>
         <title>R ggplot2 confusions</title>
-        <description>&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;R&lt;/code&gt; is powerful and &lt;code class=&quot;highlighter-rouge&quot;&gt;ggplot2&lt;/code&gt; makes it more accessible.
+        <description>&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;R&lt;/code&gt; is powerful and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ggplot2&lt;/code&gt; makes it more accessible.
 Recently, I need to create a plot that has the Greek letter \(\mu\) displayed as a label.
 First I tried the following script in terminal&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;r &amp;lt;- rnorm(mean = 5, sd = 1, n = 1000)
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;r &amp;lt;- rnorm(mean = 5, sd = 1, n = 1000)
 df &amp;lt;- data.frame(r)
 h &amp;lt;- ggplot(df,aes(r))
 h &amp;lt;- h + geom_histogram()
@@ -77,18 +77,18 @@ h &amp;lt;- h + annotate(geom=&quot;text&quot;,label=as.character(lstr1),x=8,y=1
 &lt;p&gt;And \(\mu\) is displayed correctly in the default device as shown below.
 &lt;img src=&quot;/img/in-post/R-ggplot2-mu-png.png&quot; alt=&quot;ggplot2 correct mu&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;However, when I tried to save the figure by using &lt;code class=&quot;highlighter-rouge&quot;&gt;pdf(&quot;histogram.pdf&quot;)&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;ggsave(&quot;histogram.pdf&quot;)&lt;/code&gt;
+&lt;p&gt;However, when I tried to save the figure by using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pdf(&quot;histogram.pdf&quot;)&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ggsave(&quot;histogram.pdf&quot;)&lt;/code&gt;
 the letter \(\mu\) was displayed as \(\propto\) in the pdf file, as shown below.
 &lt;img src=&quot;/img/in-post/R-ggplot2-mu-pdf.png&quot; alt=&quot;ggplot2 wrong mu&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;This can be fixed by saving the figure to pdf with &lt;code class=&quot;highlighter-rouge&quot;&gt;cairo_pdf(&quot;histogram.pdf&quot;)&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;This can be fixed by saving the figure to pdf with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cairo_pdf(&quot;histogram.pdf&quot;)&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;I suspect it was because of encoding or font issue in the saving process.&lt;/p&gt;
 
 &lt;p&gt;By the way, if one wants \(\mu\) to be displayed as italic, then changing
-&lt;code class=&quot;highlighter-rouge&quot;&gt;lstr1 &amp;lt;- expression(mu == 5)&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;lstr1 &amp;lt;- expression(italic(&quot;\u03BC&quot;) == 5)&lt;/code&gt;
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lstr1 &amp;lt;- expression(mu == 5)&lt;/code&gt; to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lstr1 &amp;lt;- expression(italic(&quot;\u03BC&quot;) == 5)&lt;/code&gt;
 will do.
-Here &lt;code class=&quot;highlighter-rouge&quot;&gt;\u03BC&lt;/code&gt; is the unicode of \(\mu\). (cf. &lt;a href=&quot;https://stackoverflow.com/questions/27690729/greek-letters-symbols-and-line-breaks-inside-a-ggplot-legend-label/27741196&quot;&gt;Greek letters, symbols, and line breaks inside a ggplot legend label&lt;/a&gt;)&lt;/p&gt;
+Here &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;\u03BC&lt;/code&gt; is the unicode of \(\mu\). (cf. &lt;a href=&quot;https://stackoverflow.com/questions/27690729/greek-letters-symbols-and-line-breaks-inside-a-ggplot-legend-label/27741196&quot;&gt;Greek letters, symbols, and line breaks inside a ggplot legend label&lt;/a&gt;)&lt;/p&gt;
 
 </description>
         <pubDate>Tue, 28 Aug 2018 21:00:00 +0800</pubDate>

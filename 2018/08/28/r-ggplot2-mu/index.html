@@ -90,6 +90,10 @@
                     </li>
                     
                     <li>
+                        <a href="https://ZhiguoLong.github.io/Publication/">Publications</a>
+                    </li>
+                    
+                    <li>
                         <a href="https://ZhiguoLong.github.io/blog/">Blog</a>
                     </li>
                     
@@ -192,10 +196,10 @@
 		col-xs-12
 		post-container
 	    ">
-				<p><code class="highlighter-rouge">R</code> is powerful and <code class="highlighter-rouge">ggplot2</code> makes it more accessible.
+				<p><code class="language-plaintext highlighter-rouge">R</code> is powerful and <code class="language-plaintext highlighter-rouge">ggplot2</code> makes it more accessible.
 Recently, I need to create a plot that has the Greek letter \(\mu\) displayed as a label.
 First I tried the following script in terminal</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>r &lt;- rnorm(mean = 5, sd = 1, n = 1000)
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>r &lt;- rnorm(mean = 5, sd = 1, n = 1000)
 df &lt;- data.frame(r)
 h &lt;- ggplot(df,aes(r))
 h &lt;- h + geom_histogram()
@@ -205,18 +209,18 @@ h &lt;- h + annotate(geom="text",label=as.character(lstr1),x=8,y=100,family="Tim
 <p>And \(\mu\) is displayed correctly in the default device as shown below.
 <img src="/img/in-post/R-ggplot2-mu-png.png" alt="ggplot2 correct mu" /></p>
 
-<p>However, when I tried to save the figure by using <code class="highlighter-rouge">pdf("histogram.pdf")</code> or <code class="highlighter-rouge">ggsave("histogram.pdf")</code>
+<p>However, when I tried to save the figure by using <code class="language-plaintext highlighter-rouge">pdf("histogram.pdf")</code> or <code class="language-plaintext highlighter-rouge">ggsave("histogram.pdf")</code>
 the letter \(\mu\) was displayed as \(\propto\) in the pdf file, as shown below.
 <img src="/img/in-post/R-ggplot2-mu-pdf.png" alt="ggplot2 wrong mu" /></p>
 
-<p>This can be fixed by saving the figure to pdf with <code class="highlighter-rouge">cairo_pdf("histogram.pdf")</code>.</p>
+<p>This can be fixed by saving the figure to pdf with <code class="language-plaintext highlighter-rouge">cairo_pdf("histogram.pdf")</code>.</p>
 
 <p>I suspect it was because of encoding or font issue in the saving process.</p>
 
 <p>By the way, if one wants \(\mu\) to be displayed as italic, then changing
-<code class="highlighter-rouge">lstr1 &lt;- expression(mu == 5)</code> to <code class="highlighter-rouge">lstr1 &lt;- expression(italic("\u03BC") == 5)</code>
+<code class="language-plaintext highlighter-rouge">lstr1 &lt;- expression(mu == 5)</code> to <code class="language-plaintext highlighter-rouge">lstr1 &lt;- expression(italic("\u03BC") == 5)</code>
 will do.
-Here <code class="highlighter-rouge">\u03BC</code> is the unicode of \(\mu\). (cf. <a href="https://stackoverflow.com/questions/27690729/greek-letters-symbols-and-line-breaks-inside-a-ggplot-legend-label/27741196">Greek letters, symbols, and line breaks inside a ggplot legend label</a>)</p>
+Here <code class="language-plaintext highlighter-rouge">\u03BC</code> is the unicode of \(\mu\). (cf. <a href="https://stackoverflow.com/questions/27690729/greek-letters-symbols-and-line-breaks-inside-a-ggplot-legend-label/27741196">Greek letters, symbols, and line breaks inside a ggplot legend label</a>)</p>
 
 
 		</div>
@@ -257,11 +261,11 @@ Here <code class="highlighter-rouge">\u03BC</code> is the unicode of \(\mu\). (c
 		<h5>Related Links</h5>
 		<ul class="list-inline">
 		    
+			<li><a href="https://profiles.uts.edu.au/sanjiang.li">Sanjiang Li</a></li>
+		    
+			<li><a href="https://msioutis.gitlab.io/">Michael Sioutis</a></li>
+		    
 			<li><a href="http://www.jaeheelee.info/">Jae Hee Lee</a></li>
-		    
-			<li><a href="https://sites.google.com/site/lisanjiang/">Sanjiang Li</a></li>
-		    
-			<li><a href="http://cgi.di.uoa.gr/~sioutis/index.php">Michael Sioutis</a></li>
 		    
 		</ul>
 		
@@ -398,7 +402,7 @@ div.innerHTML = "<br> Word: " + count+"<br>"+"Reading time about: "+((minutes>0)
                     
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Zhiguo 2020
+                    Copyright &copy; Zhiguo 2022
                     <br>
                     Theme by <a href="http://huangxuan.me">Hux</a> |
                     <iframe

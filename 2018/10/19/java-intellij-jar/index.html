@@ -90,6 +90,10 @@
                     </li>
                     
                     <li>
+                        <a href="https://ZhiguoLong.github.io/Publication/">Publications</a>
+                    </li>
+                    
+                    <li>
                         <a href="https://ZhiguoLong.github.io/blog/">Blog</a>
                     </li>
                     
@@ -192,18 +196,18 @@
 		col-xs-12
 		post-container
 	    ">
-				<p>Extracting to <code class="highlighter-rouge">jar</code> file makes it convenient to run a Java program from command
-line. But today I encountered a problem of extracting <code class="highlighter-rouge">jar</code> file with IntelliJ Idea.</p>
+				<p>Extracting to <code class="language-plaintext highlighter-rouge">jar</code> file makes it convenient to run a Java program from command
+line. But today I encountered a problem of extracting <code class="language-plaintext highlighter-rouge">jar</code> file with IntelliJ Idea.</p>
 
-<p>The problem is that after using the <code class="highlighter-rouge">Build Artifact</code> function in IntelliJ Idea to
-build a <code class="highlighter-rouge">jar</code> file, I cannot run it from command line: it says “Error: Could not
+<p>The problem is that after using the <code class="language-plaintext highlighter-rouge">Build Artifact</code> function in IntelliJ Idea to
+build a <code class="language-plaintext highlighter-rouge">jar</code> file, I cannot run it from command line: it says “Error: Could not
 find or load main class”.</p>
 
 <p>I searched the Internet and finally found two solutions.</p>
 
-<h2 id="solution-1-manually-delete-some-files-from-the-jar-file">Solution 1: Manually delete some files from the <code class="highlighter-rouge">jar</code> file</h2>
+<h2 id="solution-1-manually-delete-some-files-from-the-jar-file">Solution 1: Manually delete some files from the <code class="language-plaintext highlighter-rouge">jar</code> file</h2>
 
-<p>Delete from the <code class="highlighter-rouge">jar</code> file these files: <code class="highlighter-rouge">META-INF/*.RSA</code>, <code class="highlighter-rouge">META-INF/*.SF</code>, <code class="highlighter-rouge">META-INF/*.DSA</code>.</p>
+<p>Delete from the <code class="language-plaintext highlighter-rouge">jar</code> file these files: <code class="language-plaintext highlighter-rouge">META-INF/*.RSA</code>, <code class="language-plaintext highlighter-rouge">META-INF/*.SF</code>, <code class="language-plaintext highlighter-rouge">META-INF/*.DSA</code>.</p>
 
 <p>This is easy. You can open some archive manager software and delete these files and
 save. Then the program will run like a magic.</p>
@@ -215,7 +219,7 @@ and leaded to the second solution.</p>
 
 <h2 id="solution-2-change-extracting-library-jars-to-pack-as-it-is">Solution 2: Change extracting library jars to pack as it is</h2>
 
-<p>In the configuration of Artifact (<code class="highlighter-rouge">Project Structure -&gt; Artifact</code>), there is a
+<p>In the configuration of Artifact (<code class="language-plaintext highlighter-rouge">Project Structure -&gt; Artifact</code>), there is a
 window for choosing source. What we need to do is to remove all the “Extracted”
 things, and double click the library files in “Available Elements” on the right.
 This is from <a href="https://stackoverflow.com/questions/41746177/how-do-i-create-a-runnable-jar-in-intellij-as-i-would-in-eclipse/43855741#43855741">Someone on stackoverflow</a>.</p>
@@ -268,11 +272,11 @@ are signed which mess up the META-INF folder.</li>
 		<h5>Related Links</h5>
 		<ul class="list-inline">
 		    
+			<li><a href="https://profiles.uts.edu.au/sanjiang.li">Sanjiang Li</a></li>
+		    
+			<li><a href="https://msioutis.gitlab.io/">Michael Sioutis</a></li>
+		    
 			<li><a href="http://www.jaeheelee.info/">Jae Hee Lee</a></li>
-		    
-			<li><a href="https://sites.google.com/site/lisanjiang/">Sanjiang Li</a></li>
-		    
-			<li><a href="http://cgi.di.uoa.gr/~sioutis/index.php">Michael Sioutis</a></li>
 		    
 		</ul>
 		
@@ -409,7 +413,7 @@ div.innerHTML = "<br> Word: " + count+"<br>"+"Reading time about: "+((minutes>0)
                     
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Zhiguo 2020
+                    Copyright &copy; Zhiguo 2022
                     <br>
                     Theme by <a href="http://huangxuan.me">Hux</a> |
                     <iframe
