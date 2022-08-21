@@ -46,9 +46,10 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    
     <!-- ga & ba script hoook -->
     <script></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script> -->
 </head>
 
 
@@ -86,6 +87,10 @@
                     
                     
                     <li>
+                        <a href="https://ZhiguoLong.github.io/js/katex/"></a>
+                    </li>
+                    
+                    <li>
                         <a href="https://ZhiguoLong.github.io/">Home</a>
                     </li>
                     
@@ -102,11 +107,11 @@
                     </li>
                     
                     <li>
-                        <a href="https://ZhiguoLong.github.io/archive/">Archive</a>
+                        <a href="https://ZhiguoLong.github.io/tags/">Tags</a>
                     </li>
                     
                     <li>
-                        <a href="https://ZhiguoLong.github.io/tags/">Tags</a>
+                        <a href="https://ZhiguoLong.github.io/archive/">Archive</a>
                     </li>
                     
                 </ul>
@@ -336,6 +341,14 @@
                                         href="https://github.com/ZhiguoLong/DPCI_code">Code</a>
                         <p class="pubtitle">COSIT 2022: To Appear (<span class="pubyear">2022</span>)</p>
                 </li>
+                <li data-id="20">
+                        <div class="pubtype" pubtype="workshop organization"></div>
+                        <span class="authors">Michael Sioutis, Zhiguo Long, John Stell, Jochen Renz:</span>
+                        <p class="itemtitle">First International Workshop on Spatio-Temporal Reasoning and Learning. <a class="workshop-link"
+                                        href="https://strl2022.github.io/">Workshop Link</a> | <a class="proceeding-link"
+                                        href="http://ceur-ws.org/Vol-3190/">Proceedings Link</a>
+                        <p class="pubtitle">CEUR-Workshop Proceedings: To Appear (<span class="pubyear">2022</span>)</p>
+                </li>
         </ul>
 </div>
 <script src="https://ZhiguoLong.github.io/js/list.min.js"></script>
@@ -357,10 +370,16 @@ pubList.sort("id",{
 var pubtypelist = document.getElementsByClassName("pubtype");
 for ( var i = 0; i < pubtypelist.length; i++ ) {
         if(pubtypelist[i].getAttribute("pubtype") == "journal"){
-                pubtypelist[i].innerHTML="[Journal Paper]";
+                pubtypelist[i].innerHTML="<p style='font-weight:600;color:#777'>Journal Article</p>";
         }
         if(pubtypelist[i].getAttribute("pubtype") == "conference"){
-                pubtypelist[i].innerHTML="[Conference Paper]";
+                pubtypelist[i].innerHTML="<p style='font-weight:600;color:#777'>Conference Paper</p>";
+        }
+        if(pubtypelist[i].getAttribute("pubtype") == "workshop"){
+                pubtypelist[i].innerHTML="<p style='font-weight:600;color:#777'>Workshop Paper</p>";
+        }
+        if(pubtypelist[i].getAttribute("pubtype") == "workshop organization"){
+                pubtypelist[i].innerHTML="<p style='font-weight:600;color:#777'>Workshop Organization</p>";
         }
 }
 </script>
@@ -384,6 +403,12 @@ for ( var i = 0; i < pubtypelist.length; i++ ) {
                     <hr class="hidden-sm hidden-xs">
                     <h5><a href="https://ZhiguoLong.github.io/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
+                        
+                            
+                        
+                            
+                        
+                            
                         
                             
                         

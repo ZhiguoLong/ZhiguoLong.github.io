@@ -74,3 +74,5 @@ gem "nokogiri", ">= 1.13.6"
 
 
 gem "webrick", "~> 1.7"
+
+gem "kramdown-math-katex", "~> 1.0"

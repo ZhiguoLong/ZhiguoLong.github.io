@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="https://ZhiguoLong.github.io/img/favicon.ico">
+
+    <title>A bug in the algorithm for triangulating a graph by (Tarjan 1984) - Zhiguo Long | 龙治国</title>
+
+    <link rel="canonical" href="https://ZhiguoLong.github.io/2022/08/18/triangulating-a-graph/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="https://ZhiguoLong.github.io/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="https://ZhiguoLong.github.io/css/hux-blog.min.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="https://ZhiguoLong.github.io/css/syntax.css">
+
+    <!-- Custom Fonts -->
+    <!-- add academic social networks icons -->
+    <link rel="stylesheet" href="https://ZhiguoLong.github.io/css/academicons.css" type="text/css"/>
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://ZhiguoLong.github.io/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    
+    <!-- KaTeX -->
+    <link rel="stylesheet" href="https://ZhiguoLong.github.io/js/katex/katex.min.css">
+    <script defer src="https://ZhiguoLong.github.io/js/katex/katex.min.js"></script>
+    <script defer src="https://ZhiguoLong.github.io/js/katex/contrib/auto-render.min.js"
+    onload='renderMathInElement(document.body, {delimiters: [{ left: "$$", right: "$$", display: true },{ left: "$", right: "$", display: false },{ left: "\\[", right: "\\]", display: true }]});'></script>
+    
+    <!-- ga & ba script hoook -->
+    <script></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script> -->
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://ZhiguoLong.github.io/">Zhiguo</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+		    <!--
+                    <li>
+                        <a href="https://ZhiguoLong.github.io/">Home</a>
+                    </li>
+                    -->
+                    
+                    
+                    <li>
+                        <a href="https://ZhiguoLong.github.io/js/katex/"></a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://ZhiguoLong.github.io/">Home</a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://ZhiguoLong.github.io/Publication/">Publications</a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://ZhiguoLong.github.io/blog/">Blog</a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://ZhiguoLong.github.io/about/">About</a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://ZhiguoLong.github.io/tags/">Tags</a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://ZhiguoLong.github.io/archive/">Archive</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/img/home-bg.jpg" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+	background-image: url('https://ZhiguoLong.github.io/img/blog-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+	<div class="row">
+	    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+		<div class="post-heading">
+		    <div class="tags">
+			
+			<a class="tag" href="https://ZhiguoLong.github.io/tags/#chordal graph" title="chordal graph">chordal graph</a>
+			
+			<a class="tag" href="https://ZhiguoLong.github.io/tags/#triangulation" title="triangulation">triangulation</a>
+			
+			<a class="tag" href="https://ZhiguoLong.github.io/tags/#Tarjan" title="Tarjan">Tarjan</a>
+			
+		    </div>
+		    <h1>A bug in the algorithm for triangulating a graph by (Tarjan 1984)</h1>
+		    
+		    
+		    <h2 class="subheading"></h2>
+		    
+		    <span class="meta">Posted by Zhiguo on August 18, 2022</span>
+		    <span id="wordcount"></span>
+		</div>
+	    </div>
+	</div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+	<div class="row">
+
+    <!-- Post Container -->
+	    <div id="post-container-div" class="
+		col-lg-8 col-lg-offset-1
+		col-md-8 col-md-offset-1
+		col-sm-12
+		col-xs-12
+		post-container
+	    ">
+				<p>About one year ago, my student Qiyuan Hu noticed a strange thing when trying to triangulate the graph of a Qualitative Constraint Network (QCN). In particular, when we apply the triangulation algorithm to a complete graph, it will complain <code class="language-plaintext highlighter-rouge">list index out of range</code>. A simple example can be found in <a href="https://ZhiguoLong.github.io/file/test_triangulation.ipynb">test_triangulation.ipynb</a>. (Please ignore constraints there which are specific for QCN.) The algorithm used is from (Tarjan 1984)<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup>, which consists of two sub-algorithms: <code class="language-plaintext highlighter-rouge">Maximum Cardinality Search</code> (<code class="language-plaintext highlighter-rouge">MCS</code>) and <code class="language-plaintext highlighter-rouge">Fill-in Computation</code> (<code class="language-plaintext highlighter-rouge">FIC</code>). We checked the details in that paper, and found that the algorithm was implemented correctly and the error is a bug of <code class="language-plaintext highlighter-rouge">MCS</code>. <strong>This bug applies to general simple graphs</strong>, and is not restricted to the field of Qualitative Spatial Reasoning. I did some simple search and found several implementations of the algorithm, e.g., <a href="https://github.com/igraph/igraph/blob/1959e9e8b056a8cb1f7828939d3371b40ae83b08/src/misc/chordality.c">igraph</a>. However, to the best of my knowledge, I didn’t see any previous discussion on this bug (of course I could be wrong).</p>
+
+<p><img src="/img/in-post/mcs-algorithm.png" alt="Pseudo code of Maximum Cardinality Search algorithm" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">MCS</span><span class="p">(</span><span class="n">ConMatrix</span><span class="p">,</span> <span class="n">neighbors</span><span class="p">):</span>
+    
+   <span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="bp">None</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ConMatrix</span><span class="p">))]</span>
+   <span class="n">a_</span> <span class="o">=</span> <span class="p">[</span><span class="bp">None</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ConMatrix</span><span class="p">))]</span>     
+
+   <span class="n">Set</span> <span class="o">=</span> <span class="p">[</span><span class="bp">None</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ConMatrix</span><span class="p">))]</span>
+   <span class="n">Size</span> <span class="o">=</span> <span class="p">[</span><span class="bp">None</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ConMatrix</span><span class="p">))]</span> 
+
+   <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ConMatrix</span><span class="p">)):</span>
+      <span class="n">Set</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([])</span>     
+      <span class="n">Size</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+      <span class="n">Set</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">add</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+   <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
+   <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ConMatrix</span><span class="p">)):</span>
+      <span class="n">v</span> <span class="o">=</span> <span class="n">Set</span><span class="p">[</span><span class="n">j</span><span class="p">].</span><span class="n">pop</span><span class="p">()</span>
+      <span class="n">a</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
+      <span class="n">a_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
+      <span class="c1"># # uncomment codes below to fix the bug    
+</span>
+      <span class="c1"># if j==(len(ConMatrix)-1):    
+</span>      
+      <span class="c1">#    break    
+</span>      
+      <span class="n">Size</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+      <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">neighbors</span><span class="p">[</span><span class="n">v</span><span class="p">]:</span>
+         <span class="k">if</span> <span class="n">Size</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">Set</span><span class="p">[</span><span class="n">Size</span><span class="p">[</span><span class="n">u</span><span class="p">]].</span><span class="n">remove</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+            <span class="n">Size</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="n">Size</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="n">Set</span><span class="p">[</span><span class="n">Size</span><span class="p">[</span><span class="n">u</span><span class="p">]].</span><span class="n">add</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+      <span class="n">j</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span>
+      <span class="k">while</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">Set</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
+         <span class="n">j</span> <span class="o">=</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">1</span>
+
+   <span class="k">return</span> <span class="n">a</span><span class="p">,</span> <span class="n">a_</span>
+</code></pre></div></div>
+
+<p>So we started to explore the cause of this error. From the error message, we can see that the error is due to trying to access an element in the list by a given index, but the given index is larger than the length of the index minus one (out of range).
+The relevant list in our implementation is used to store <code class="language-plaintext highlighter-rouge">Set[k]</code>, which consists of all unnumbered vertices adjacent to exactly $k$ numbered vertices. The range of $k$ is from $0$ to $n-1$.</p>
+
+<p>A simple example will be able to illustrate how the error occurs and how we should fix it. Let us consider a complete graph of 3 vertices $v_0,v_1,v_2$. The algorithm <code class="language-plaintext highlighter-rouge">MCS</code> will number the vertices from $0$ to $2$. Initially, all 3 vertices are unnumbered and each of them is adjacent to $0$ numbered vertices, i.e., <code class="language-plaintext highlighter-rouge">Set[0]={0, 1, 2}</code>. A vertex from <code class="language-plaintext highlighter-rouge">Set[0]</code> will be selected and numbered, say $v_0$ is selected and numbered as $0$, then <code class="language-plaintext highlighter-rouge">Set[0]={1, 2}</code>. The neighbors of $v_0$ will be moved from <code class="language-plaintext highlighter-rouge">Set[0]</code> to <code class="language-plaintext highlighter-rouge">Set[1]</code> and now <code class="language-plaintext highlighter-rouge">Set[0]={ }</code> and <code class="language-plaintext highlighter-rouge">Set[1]={1,2}</code>. Then the index $j$ of the set to consider is increased by 1. If the corresponding set is empty, then it means no unnumbered vertex is adjacent to $j$ numbered vertices, so $j$ is decreased until a value s.t. there exists an unnumbered vertex that is adjacent to $j$ numbered vertices. In the case here, $j$ is increased from $0$ to $1$, and <code class="language-plaintext highlighter-rouge">Set[1]</code> is non-empty, so the next loop will have $j$ being $1$.</p>
+
+<p>In the next loop, a vertex in <code class="language-plaintext highlighter-rouge">Set[1]</code> is selected and numbered, say $v_1$. Before increasing $j$ by 1, <code class="language-plaintext highlighter-rouge">Set[0]={ }</code>, <code class="language-plaintext highlighter-rouge">Set[1]={ }</code>, and <code class="language-plaintext highlighter-rouge">Set[2]={2}</code>. Then $j$ becomes $2$ and the next loop will have $j$ being $2$. The vertex $v_2$ in <code class="language-plaintext highlighter-rouge">Set[2]</code> is selected and every <code class="language-plaintext highlighter-rouge">Set[k]</code> ($k=0,1,2$) becomes empty. Then $j$ is increased by $1$ and becomes $3$, but there is no <code class="language-plaintext highlighter-rouge">Set[3]</code>, so an error of <code class="language-plaintext highlighter-rouge">list index out of range</code> will be raised.</p>
+
+<p>It can be seen from the above example that, when $j=n-1$, we are about to number vertices adjacent to $n-1$ numbered vertices. Note that there can only be one such vertex that is adjacent to $n-1$ numbered vertices, that is, the last unnumbered vertex. So when $j=n-1$, there is no need to do anything but to number the last unnumbered vertex.</p>
+
+<p>Therefore, <strong>a simple fix</strong> is to add a check right after numbering a vertex, to see if $j$ is $n-1$, and if so then we just stop the numbering process. A fixed implementation can be found in <a href="https://github.com/ZhiguoLong/DPCI_code/blob/9a3ec13b9a08bdc00148a4bbb58e88358d53d8eb/src/triangulation.py">triangulation.py</a>.</p>
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p>Robert E. Tarjan, Mihalis Yannakakis. Simple Linear-Time Algorithms to Test Chordality of Graphs, Test Acyclicity of Hypergraphs, and Selectively Reduce Acyclic Hypergraphs, SIAM Journal on Computing, 1984, 13(3): 566–579. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+		</div>
+		  <!-- Sidebar Container -->
+	    <div class="
+		col-lg-3 col-lg-offset-0
+		col-md-3 col-md-offset-0
+		col-sm-12
+		col-xs-12
+		sidebar-container
+	    ">
+		<!-- Featured Tags -->
+		
+		<section>
+		    <hr class="hidden-sm hidden-xs">
+		    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+		    <div class="tags">
+			  
+			      
+			  
+			      
+			  
+			      
+			  
+			      
+			  
+			      
+			  
+			      
+			  
+			      
+			  
+			      
+			  
+			      
+			  
+		    </div>
+		</section>
+		
+
+		<!-- Friends Blog -->
+		
+		<hr>
+		<h5>Related Links</h5>
+		<ul class="list-inline">
+		    
+			<li><a href="https://profiles.uts.edu.au/sanjiang.li">Sanjiang Li</a></li>
+		    
+			<li><a href="https://msioutis.gitlab.io/">Michael Sioutis</a></li>
+		    
+			<li><a href="http://www.jaeheelee.info/">Jae Hee Lee</a></li>
+		    
+		</ul>
+		
+	    </div>
+<!--                 <hr> -->
+		
+		
+
+
+		<ul class="pager">
+		    
+		    <li class="previous">
+			<a href="/2018/10/19/java-intellij-jar/" data-toggle="tooltip" data-placement="top" title="Java Jar Building">&larr; Previous Post</a>
+		    </li>
+		    
+		    
+		</ul>
+
+
+		
+
+		
+
+	    </div>
+
+    
+	</div>
+    </div>
+</article>
+
+
+
+
+
+<!-- word count -->
+<script type="text/javascript">
+function get_text(el) {
+    ret = "";
+    var length = el.childNodes.length;
+    for(var i = 0; i < length; i++) {
+	var node = el.childNodes[i];
+	if(node.nodeType != 8) {
+	    ret += node.nodeType != 1 ? node.nodeValue : get_text(node);
+	}
+    }
+    return ret;
+}
+var words = get_text(document.getElementById('post-container-div'));
+var matches = words.match(/[\u00ff-\uffff]|\S+/g);
+var count = (matches ? matches.length : 0);
+var div = document.getElementById('wordcount');
+var time = count/2;
+var minutes = Math.floor(time / 60);
+var seconds = Math.floor(time - minutes * 60);
+div.innerHTML = "<br> Word: " + count+"<br>"+"Reading time about: "+((minutes>0) ? (minutes+" min ") : "") +((seconds>0) ? (seconds+ " sec ") : "");
+
+</script>
+<!-- word count end -->
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+	  o = d.createElement(t),
+	  s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+	anchors.options = {
+	  visible: 'always',
+	  placement: 'right',
+	  icon: '#'
+	};
+	anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+	.anchorjs-link{
+	    position: absolute;
+	    left: -0.75em;
+	    font-size: 1.1em;
+	    margin-top : -0.1em;
+	}
+    }
+</style>
+
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                    
+
+                    <!-- add Weibo, Zhihu by Hux, add target = "_blank" to <a> by Hux -->
+                    
+                    
+                    <li>
+                    <a target="_blank" href="https://www.researchgate.net/profile/Zhiguo_Long">
+                    <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa  fa-stack-1x fa-inverse"><i class="ai ai-researchgate ai-1x" style="color:white;"></i></i>
+                    </span>
+                    </a>
+                    </li>
+                    
+                    
+
+
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/ZhiguoLong">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Zhiguo 2022
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=huxpro&repo=huxpro.github.io&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="https://ZhiguoLong.github.io/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="https://ZhiguoLong.github.io/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="https://ZhiguoLong.github.io/js/hux-blog.min.js "></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+            async("https://ZhiguoLong.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+async("https://ZhiguoLong.github.io/js/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="https://ZhiguoLong.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

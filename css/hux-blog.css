@@ -144,6 +144,9 @@ pre code {
   white-space: pre;
   word-wrap: normal;
 }
+.post-container p {
+  text-align: justify;
+}
 .post-container a {
   color: #337ab7;
 }
