@@ -9,7 +9,7 @@ source 'https://mirrors.tuna.tsinghua.edu.cn/rubygems/'
 # optional
 # gem 'therubyracer'
 gem "rubyzip", ">= 1.3.0"
-gem "nokogiri", ">= 1.13.6"
+gem "nokogiri", ">= 1.13.10"
 #######
 
 #gem 'jekyll', '=3.3.0'
