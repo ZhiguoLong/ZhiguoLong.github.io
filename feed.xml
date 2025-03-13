@@ -5,9 +5,9 @@
     <description></description>
     <link>https://ZhiguoLong.github.io/</link>
     <atom:link href="https://ZhiguoLong.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 13 Mar 2025 15:43:18 +0000</pubDate>
-    <lastBuildDate>Thu, 13 Mar 2025 15:43:18 +0000</lastBuildDate>
-    <generator>Jekyll v3.9.5</generator>
+    <pubDate>Thu, 13 Mar 2025 16:12:55 +0000</pubDate>
+    <lastBuildDate>Thu, 13 Mar 2025 16:12:55 +0000</lastBuildDate>
+    <generator>Jekyll v3.10.0</generator>
     
       <item>
         <title>A bug in the algorithm for triangulating a graph by (Tarjan 1984)</title>

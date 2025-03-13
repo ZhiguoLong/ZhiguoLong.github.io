@@ -1,5 +1,5 @@
-# source 'https://rubygems.org'
-source 'https://mirrors.tuna.tsinghua.edu.cn/rubygems/'
+source 'https://rubygems.org'
+# source 'https://mirrors.tuna.tsinghua.edu.cn/rubygems/'
 #####
 # causes custom plugins not loading
  gem 'github-pages', group: :jekyll_plugins
@@ -8,7 +8,7 @@ source 'https://mirrors.tuna.tsinghua.edu.cn/rubygems/'
 #####
 # optional
 # gem 'therubyracer'
-gem "rubyzip", ">= 1.3.0"
+gem "rubyzip", "~> 2.3.0"
 gem "nokogiri", ">= 1.13.10"
 #######
 
@@ -73,6 +73,6 @@ gem "nokogiri", ">= 1.13.10"
 # Using github-pages 87
 
 
-gem "webrick", "~> 1.7"
+gem "webrick", ">= 1.8.2"
 
 gem "kramdown-math-katex", "~> 1.0"
