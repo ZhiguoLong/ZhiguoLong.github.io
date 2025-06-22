@@ -5,8 +5,8 @@
     <description></description>
     <link>https://ZhiguoLong.github.io/</link>
     <atom:link href="https://ZhiguoLong.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 13 Mar 2025 16:12:55 +0000</pubDate>
-    <lastBuildDate>Thu, 13 Mar 2025 16:12:55 +0000</lastBuildDate>
+    <pubDate>Sun, 22 Jun 2025 12:07:44 +0800</pubDate>
+    <lastBuildDate>Sun, 22 Jun 2025 12:07:44 +0800</lastBuildDate>
     <generator>Jekyll v3.10.0</generator>
     
       <item>
@@ -71,7 +71,7 @@ The relevant list in our implementation is used to store &lt;code class=&quot;la
   &lt;/ol&gt;
 &lt;/div&gt;
 </description>
-        <pubDate>Thu, 18 Aug 2022 04:00:00 +0100</pubDate>
+        <pubDate>Thu, 18 Aug 2022 11:00:00 +0800</pubDate>
         <link>https://ZhiguoLong.github.io/2022/08/18/triangulating-a-graph/</link>
         <guid isPermaLink="true">https://ZhiguoLong.github.io/2022/08/18/triangulating-a-graph/</guid>
         
@@ -124,7 +124,7 @@ are signed which mess up the META-INF folder.&lt;/li&gt;
 &lt;/ul&gt;
 
 </description>
-        <pubDate>Fri, 19 Oct 2018 16:15:00 +0100</pubDate>
+        <pubDate>Fri, 19 Oct 2018 23:15:00 +0800</pubDate>
         <link>https://ZhiguoLong.github.io/2018/10/19/java-intellij-jar/</link>
         <guid isPermaLink="true">https://ZhiguoLong.github.io/2018/10/19/java-intellij-jar/</guid>
         
@@ -166,7 +166,7 @@ will do.
 Here &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;\u03BC&lt;/code&gt; is the unicode of \(\mu\). (cf. &lt;a href=&quot;https://stackoverflow.com/questions/27690729/greek-letters-symbols-and-line-breaks-inside-a-ggplot-legend-label/27741196&quot;&gt;Greek letters, symbols, and line breaks inside a ggplot legend label&lt;/a&gt;)&lt;/p&gt;
 
 </description>
-        <pubDate>Tue, 28 Aug 2018 14:00:00 +0100</pubDate>
+        <pubDate>Tue, 28 Aug 2018 21:00:00 +0800</pubDate>
         <link>https://ZhiguoLong.github.io/2018/08/28/r-ggplot2-mu/</link>
         <guid isPermaLink="true">https://ZhiguoLong.github.io/2018/08/28/r-ggplot2-mu/</guid>
         
